@@ -66,7 +66,9 @@ public class Bird implements ActionListener,MouseListener
 	      int height=50+random.nextInt(300);
 	      
 	      if(start) {
-	      columns.add(new Rectangle(WIDTH+width+columns.size()*300,HEIGHT-height-120,width,height));
+	    	  //its for downward column
+	     columns.add(new Rectangle(WIDTH+width+columns.size()*300,HEIGHT-height-120,width,height));
+	      //its for upward column
 	      columns.add(new Rectangle(WIDTH+width+(columns.size()-1)*300,0,width,HEIGHT-height-space));
 	      }
 	      else {
@@ -90,18 +92,20 @@ public class Bird implements ActionListener,MouseListener
 			yMotion=0;
 			score=0;
 			
-			addColumn(true);
-			addColumn(true);
-			addColumn(true);
-			addColumn(true);
+//			addColumn(true);
+//			addColumn(true);
+//			addColumn(true);
+//			addColumn(true);
 			gameOver=false;
 		}
 		if(!started) {
 			started =true;
 		}else if(!gameOver) {
 			if(yMotion>0){
+				//the bird stays in its position it will not go downward motion thats whay yMotion =0
 				yMotion=0;
 			}
+			//each pressed key will do -10 i.e if we press the mouse than it will move upward by -10.
 			yMotion-=10;
 		}
 	}
@@ -113,7 +117,7 @@ public class Bird implements ActionListener,MouseListener
 	{
 		int speed =10;
 		ticks++;
-		//
+		//ticks help to bird fall slowley..if we do ticks%4 and 5.it will fall slowely
 		if(started) {
 			
 		
@@ -121,7 +125,7 @@ public class Bird implements ActionListener,MouseListener
 			Rectangle column =columns.get(i);
 			column.x-=speed;
 		}
-		
+		//yMotion just adding whats bird coordinate is .if we do +2 it will do down little in screen +3 it will be more down little
 		if(ticks % 2==0 &&yMotion<15) {
 			yMotion+=2;
 		}
@@ -138,6 +142,7 @@ public class Bird implements ActionListener,MouseListener
 		rectangle.y+=yMotion;
 		
 		for(Rectangle column:columns) {
+			//if bird have successfully pass the column than it will going to increase the score
 			if(column.y==0 && rectangle.x+rectangle.width/2>column.x+column.width/2-10 && rectangle.x+rectangle.width/2<column.x+column.width/2+10 )
 			{
 				score++;

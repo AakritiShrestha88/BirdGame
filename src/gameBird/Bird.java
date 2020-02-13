@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import javax.swing.Timer;
 
 import javax.swing.JFrame;
 
-public class Bird implements ActionListener,MouseListener
+public class Bird implements ActionListener,MouseListener,KeyListener
 {
 	
 	public static Bird bird;
@@ -45,6 +47,7 @@ public class Bird implements ActionListener,MouseListener
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setSize(WIDTH, HEIGHT);
 		jframe.addMouseListener(this);
+		jframe.addKeyListener(this);
 	jframe.setResizable(false);
 		//I want to make visible
 	jframe.setVisible(true);
@@ -151,7 +154,7 @@ public class Bird implements ActionListener,MouseListener
 			if(column.intersects(rectangle)) {
 				gameOver=true;
 				
-				rectangle.x=column.x-rectangle.width;
+				
 			}
 		}
 		if(rectangle.y>HEIGHT-120||rectangle.y<0) {
@@ -230,6 +233,26 @@ public class Bird implements ActionListener,MouseListener
 	@Override
 	public void mouseExited(MouseEvent e) {
 		
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+			jump();
+		}
 		
 	}
 

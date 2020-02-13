@@ -195,6 +195,9 @@ public class Bird implements ActionListener,MouseListener
 		if(gameOver) {
 			g.drawString("Game Over!", 100,HEIGHT/2 -50 );
 		}
+		if(!gameOver) {
+			g.drawString(String.valueOf(score), WIDTH/2-25, 100);
+		}
 		
 	}
 	

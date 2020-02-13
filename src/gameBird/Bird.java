@@ -92,10 +92,10 @@ public class Bird implements ActionListener,MouseListener
 			yMotion=0;
 			score=0;
 			
-//			addColumn(true);
-//			addColumn(true);
-//			addColumn(true);
-//			addColumn(true);
+			addColumn(true);
+			addColumn(true);
+			addColumn(true);
+			addColumn(true);
 			gameOver=false;
 		}
 		if(!started) {
@@ -126,14 +126,14 @@ public class Bird implements ActionListener,MouseListener
 			column.x-=speed;
 		}
 		//yMotion just adding whats bird coordinate is .if we do +2 it will do down little in screen +3 it will be more down little
-		if(ticks % 2==0 &&yMotion<15) {
-			yMotion+=2;
+		if(ticks % 2==0 && yMotion<15) {
+			yMotion +=2;
 		}
 		for(int i=0;i<columns.size();i++) {
 			Rectangle column =columns.get(i);
 			if(column.x +column.width<0) {
 				columns.remove(column);
-				
+				//if its top column add another column like buttom column
 				if(column.y==0) {
 					addColumn(false);
 				}
@@ -143,7 +143,7 @@ public class Bird implements ActionListener,MouseListener
 		
 		for(Rectangle column:columns) {
 			//if bird have successfully pass the column than it will going to increase the score
-			if(column.y==0 && rectangle.x+rectangle.width/2>column.x+column.width/2-10 && rectangle.x+rectangle.width/2<column.x+column.width/2+10 )
+			if(column.y == 0 && rectangle.x+rectangle.width/2>column.x+column.width/2-10 && rectangle.x+rectangle.width/2<column.x+column.width/2+10 )
 			{
 				score++;
 			}
@@ -151,7 +151,7 @@ public class Bird implements ActionListener,MouseListener
 			if(column.intersects(rectangle)) {
 				gameOver=true;
 				
-				//rectangle.x=column.x-rectangle.width;
+				rectangle.x=column.x-rectangle.width;
 			}
 		}
 		if(rectangle.y>HEIGHT-120||rectangle.y<0) {
@@ -185,7 +185,7 @@ public class Bird implements ActionListener,MouseListener
 		
 		
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial",1,100));
 		
 		if(!started) {
@@ -210,25 +210,23 @@ public class Bird implements ActionListener,MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

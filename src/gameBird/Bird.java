@@ -153,7 +153,17 @@ public class Bird implements ActionListener,MouseListener,KeyListener
 			
 			if(column.intersects(rectangle)) {
 				gameOver=true;
-				
+				//
+				if(rectangle.x<=column.x) {
+					rectangle.x=column.x-rectangle.width;
+				}
+				else {
+					if(column.y !=0) {
+						rectangle.y=column.y-rectangle.height;
+					}else if(rectangle.y<column.height) {
+						rectangle.y=column.height;
+					}
+				}
 				
 			}
 		}
